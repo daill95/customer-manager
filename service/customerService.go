@@ -55,3 +55,18 @@ func (CS *CustomerService) Delete(id int) bool{
 	CS.customers = append(CS.customers[:index], CS.customers[index+1:]...)
 	return true
 }
+
+//修改客户信息
+func (CS *CustomerService) Change(id int, name string, gender string, age int, phone string, email string) bool{
+	index := CS.FindByid(id)
+	if index == -1{
+		return false
+	}
+	//从切片中删除一个元素，用append()追加一个切片，追加的切片参数后面要有三个点 ...  ，固定格式
+	CS.customers[id-1].Name = name
+	CS.customers[id-1].Gender = gender
+	CS.customers[id-1].Age = age
+	CS.customers[id-1].Phone = gender
+	CS.customers[id-1].Email = email
+	return true
+}
