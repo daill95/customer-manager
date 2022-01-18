@@ -56,6 +56,35 @@ func (cv *customerView) add(){
 	}
 }
 
+//修改客户信息
+func (cv *customerView) change(){
+	fmt.Println("---------------添加客户---------------------")
+	fmt.Println("输入要修改的客户编号：")
+	id := -1
+		fmt.Scanln(&id)
+	fmt.Println("把姓名改成：")
+	name := ""
+	fmt.Scanln(&name)
+	fmt.Println("把性别改成：")
+	gender := ""
+	fmt.Scanln(&gender)
+	fmt.Println("把年龄改成：")
+	age := 0
+	fmt.Scanln(&age)
+	fmt.Println("输入电话：")
+	phone := ""
+	fmt.Scanln(&phone)
+	fmt.Println("输入邮箱：")
+	email := ""
+	fmt.Scanln(&email)
+
+	req := cv.customerservice.Change(id, name, gender, age, phone, email)
+	if req{
+		fmt.Println("---------------修改完成---------------------")
+		fmt.Println()
+	}
+}
+
 //删除客户
 func (cv *customerView) delete(){
 	fmt.Println("---------------删除客户---------------------")
@@ -95,7 +124,7 @@ func (c *customerView) mainMenu()  {
 		case "1":
 			c.add()
 		case "2":
-			fmt.Println("修改客户")
+			c.change()
 		case "3":
 			c.delete()
 		case "4":
